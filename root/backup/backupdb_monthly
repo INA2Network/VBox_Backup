@@ -1,0 +1,4 @@
+#!/bin/sh
+HOME=/root
+LATEST=`ls -tr /db_backup/full/ | tail -1`
+rsync -cavrtlpD --rsh='ssh -p <port> -i /path/to/ssh/key' /db_path/full/$LATEST /db_path/full/ backup@<ip>:/Destination/path > /dev/null 2>&1
