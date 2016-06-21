@@ -1,4 +1,5 @@
 #!/bin/sh
 HOME=/root
 /root/backup/xtrabackup.sh full >> /var/log/db-backup.log 2>&1
-rsync -cavrtlpD --rsh='ssh -p <port> -i /path/to/ssh/key' --delete /db_path/full/ backup@<ip>:/Destination/path > /dev/null 2>&1
+rsync -cavrtlpD --rsh='ssh -p <port> -i /path/to/ssh/key' /db_path/full/ backup@<ip>:/Destination/path > /dev/null 2>&1
+find /db_path/full/*  -type d -mtime +10 -exec rm -rf {} \; > /dev/null 2>&1
